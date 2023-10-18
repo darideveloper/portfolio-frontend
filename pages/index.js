@@ -1,11 +1,16 @@
 import { fontTitle, fontRegular, fontAlternative } from "../lib/fonts"
-
-export default function Home() {
+import { useRouter } from 'next/router'
+ 
+export default function Home(props) {
+  const router = useRouter()
+ 
   return (
-    <>
-      <p className={`${fontTitle.className}`}>title</p>
-      <p className={`${fontRegular.className}`}>regular</p>
-      <p className={`${fontAlternative.className}`}>alternative</p>
-    </>
+    <div
+      onClick={() => {
+        router.push('/another', '/another', { locale: 'fr' })
+      }}
+    >
+      to /fr/another
+    </div>
   )
 }

@@ -5,4 +5,9 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #161b1e;
+}
+
+.debug {
+  border: 1px solid;
 }

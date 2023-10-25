@@ -7,7 +7,7 @@ import { fontRegular } from "@/lib/fonts"
  * Description
  * @param {jsx} children
  * @param {array} contacts objects with: id, image, name, redirect and svg
- * @param {string} extraTitle="" extra title for the page
+ * @param {str} extraTitle="" extra title for the page
  * @param {array} extraKeywords=[] extra keywords for the page
  * @returns {jsx}
  */

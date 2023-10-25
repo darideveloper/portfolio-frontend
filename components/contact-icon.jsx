@@ -1,6 +1,13 @@
 import Image from 'next/image'
 
-export default function ContactIcon({ svg, link }) {
+/**
+ * Description
+ * @param {str} svg image url
+ * @param {str} link social media to redirect
+ * @param {str} name social media name
+ * @returns {jsx}
+ */
+export default function ContactIcon({ svg, link, name }) {
 
   return (
     <a
@@ -20,6 +27,7 @@ export default function ContactIcon({ svg, link }) {
         className={`
           w-auto h-6
         `}
+        alt={`${name} icon`}
       />
      
     </a>

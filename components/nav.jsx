@@ -15,7 +15,7 @@ export default function Nav() {
           flex
           items-center
           justify-between
-          text-xl
+          text-2xl
           uppercase
         `}
       >

@@ -1,6 +1,7 @@
 
 import ContactIcon from '@/components/contact-icon'
 import Nav from '@/components/nav'
+import Search from '@/components/search'
 
 /**
  * Description
@@ -28,12 +29,15 @@ export default function Header ({contacts}) {
               key={contact.id}
               svg={contact.svg}
               link={contact.redirect}
+              name={contact.name}
             />
           ))
         }
       </div>
 
       <Nav />
+
+      <Search />
       
     </header>
   )

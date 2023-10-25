@@ -1,5 +1,6 @@
 
 import ContactIcon from '@/components/contact-icon'
+import Nav from '@/components/nav'
 
 /**
  * Description
@@ -14,8 +15,12 @@ export default function Header ({contacts}) {
         my-4
         container
         mx-auto
+        flex
+        items-center
+        justify-between
       `}
     >
+
       <div className="icons">
         {
           contacts.map(contact => (
@@ -27,6 +32,9 @@ export default function Header ({contacts}) {
           ))
         }
       </div>
+
+      <Nav />
+      
     </header>
   )
 }

@@ -1,7 +1,13 @@
-import Image from 'next/image'
 import { useEffect } from 'react'
 
-export default function Image3D({ src, alt, width, height, className, id }) {
+/**
+ * Wrapper with 3d perspective animation, when move cursor
+ * @param {children} children
+ * @param {string} className
+ * @param {string} id 
+ * @returns 
+ */
+export default function Wrapper3D({ children, className, id }) {
 
   useEffect(() => {
 
@@ -37,16 +43,14 @@ export default function Image3D({ src, alt, width, height, className, id }) {
   }, [])
 
   return (
-    <Image
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
+    <div 
       id={id}
       className={`
-        perspective 
+        perspective
         ${className}
       `}
-    />
+    >
+      {children}
+    </div>
   )
 }

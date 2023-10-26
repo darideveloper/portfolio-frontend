@@ -16,11 +16,17 @@ export default function Home ({contacts, projects}) {
   tools = tools.map (tool => tool.map (t => ({name: t.name, image: t.image})))
   
   // Move all tools to main list without duplicates
-  const mainTools = []
+  let mainTools = []
   tools.forEach (tool => tool.forEach (t => {
     if (!mainTools.find (mt => mt.name === t.name))
       mainTools.push (t)
   }))
+
+  // If there are more than 12 tools, select 12 random
+  if (mainTools.length > 12) {
+    mainTools = mainTools.sort (() => Math.random() - 0.5)
+    mainTools = mainTools.slice (0, 12)
+  }
 
   return (
     <RootLayout 

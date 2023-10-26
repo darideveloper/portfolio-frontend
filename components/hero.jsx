@@ -1,6 +1,8 @@
 import Image from 'next/image'
-import Wrapper3D from './wrapper-3d'
+import Wrapper3D from '@/components/wrapper-3d'
 import { useEffect, useState } from 'react'
+import CodeBlock from '@/components/code-block'
+import { fontTitle, fontAlternative } from '@/lib/fonts'
 
 /**
  * Hero section
@@ -11,7 +13,7 @@ export default function Hero({ tools }) {
 
   const [logoHover, setLogoHover] = useState(false)
 
-  useEffect(() => {
+  function rotateTools() {
 
     // Calculate rotation
     const rotate = 360 / tools.length
@@ -37,6 +39,14 @@ export default function Hero({ tools }) {
       img.style.filter = 'grayscale(70%)'
     })
 
+  }
+
+  useEffect(() => {
+
+    // Rotate tools when loads and on resize
+    window.addEventListener('resize', rotateTools)
+    rotateTools()
+
   }, [tools])
 
   return (
@@ -45,18 +55,33 @@ export default function Hero({ tools }) {
         hero
         w-full
         flex
+        flex-col
         items-center
         justify-center
-        py-20
+        pb-20
       `}
     >
+
+      <h1
+        className={`
+          text-5xl
+          block
+          ${fontAlternative.className}
+          font-bold
+          uppercase
+          pt-10
+          ${logoHover ? "pb-16 xs:pb-20": "pb-4"}
+          duration-500
+        `}
+      >
+        Dari Developer
+      </h1>
 
       <Wrapper3D
         id="logo-wrapper"
         className={`
           logo-wrapper
-          w-1/2
-          max-w-sm
+          w-72 xs:w-96
           relative
         `}
       >
@@ -72,7 +97,7 @@ export default function Hero({ tools }) {
             rounded-full
             mx-auto
             duartion-500
-            w-8/12
+            w-7/12 xs:w-8/12
             duration-500
             shadow-xl hover:shadow-lg
             shadow-blue-40
@@ -90,7 +115,7 @@ export default function Hero({ tools }) {
             left-1/2
             -translate-x-1/2
             -translate-y-1/2
-            mt-24
+            mt-14 xs:mt-24
             pt-2
           `}
         >
@@ -113,7 +138,7 @@ export default function Hero({ tools }) {
                   alt={tool.name}
                   key={index}
                   className={`
-                    w-12
+                    w-8 xs:w-12
                     duration-500
                     ${logoHover ? "" : "!translate-x-20"}
                   `}
@@ -124,6 +149,39 @@ export default function Hero({ tools }) {
         </div>
 
       </Wrapper3D>
+
+      <CodeBlock
+        code={`
+          @app.post ('/webhook/')
+          def message ():
+
+          # Get all post data
+          data = request.get_json ()
+
+          # Detect if is msg or wp message
+          source = "wp"
+          entry = data["entry"][0]
+          if entry.get ("messaging", ""):
+            source = "msg"
+
+          # Default error
+          error_response = (
+            "status": "error",
+            "message": "invalid request",
+            "data": []
+          . 200)
+
+          if source == "wp":
+        `}
+        className={`
+          code
+          w-8/12
+          mx-auto
+          mt-10
+          ${fontAlternative.className}
+          hidden
+        `}
+      />
 
     </div>
   )

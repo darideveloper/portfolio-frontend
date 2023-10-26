@@ -64,7 +64,7 @@ export default function Hero({ tools }) {
 
       <h1
         className={`
-          text-5xl
+          text-5xl xs:text-6xl sm:text-7xl
           block
           ${fontAlternative.className}
           font-bold
@@ -72,7 +72,10 @@ export default function Hero({ tools }) {
           pt-10
           ${logoHover ? "pb-16 xs:pb-20": "pb-4"}
           duration-500
+          glitch
+          ${logoHover ? "glitch-anim": ""}
         `}
+        data-text="Dari Developer"
       >
         Dari Developer
       </h1>

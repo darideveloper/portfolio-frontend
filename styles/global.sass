@@ -2,11 +2,18 @@
 @tailwind components
 @tailwind utilities
 
+$gray: #161b1e
+$blue: #0d98f0
+$blue-20: #0d98f016
+$blue-40: #0d98f040
+$white: #f5f5f5
+$white-20: #f5f5f5cc
+
 body
     margin: 0
     padding: 0
-    background-color: #161b1e
-    color: #f5f5f5
+    background-color: $gray
+    color: $white
     font-family: 'Oswald', sans-serif
 
 .debug
@@ -17,3 +24,35 @@ body
 
 .perspective-wrapper
     perspective: 1200px
+
+.glitch
+    position: relative
+
+    span
+        display: none
+
+    &:hover, &.glitch-anim
+        animation: glitch 2500ms infinite
+
+        &::before
+            content: attr(data-text)
+            display: inline-block
+            position: absolute
+            left: 0
+            animation: glitch 650ms infinite
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%)
+            transform: translate(-0.025em, -0.0125em)
+            opacity: 0.8
+
+@keyframes glitch
+    0%
+        text-shadow: 0.05em 0 0 $blue, -0.05em -0.025em 0 $blue-20, -0.025em 0.05em 0 $blue-40
+
+    15%
+        text-shadow: -0.05em -0.025em 0 $blue, 0.025em 0.025em 0 $blue-20, -0.05em -0.05em 0 $blue-40
+
+    50%
+        text-shadow: 0.025em 0.05em 0 $blue, 0.05em 0 0 $blue-20, 0 -0.05em 0 $blue-40
+
+    100%
+        text-shadow: -0.025em 0 0 $blue, -0.025em -0.025em 0 $blue-20, -0.025em -0.05em 0 $blue-40

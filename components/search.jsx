@@ -21,11 +21,19 @@ export default function Search() {
       <form
         action=""
         className={`
-        flex
-        items-center
-        justify-between
-        group
-      `}
+          flex
+          items-center
+          justify-between
+          group
+        `}
+        onSubmit={(e) => {
+          e.preventDefault()
+          console.log("searching...")
+
+          if (searchText) {
+            window.location.href = `/search?q=${searchText}`
+          }
+        }}
       >
         <Input
           type="search"
@@ -38,6 +46,8 @@ export default function Search() {
             group-hover:px-8
           `}
           hidden={true}
+          value={searchText}
+          onChange={e => setSearchText(e.target.value)}
         />
 
         <Button

@@ -12,6 +12,14 @@ module.exports = {
       "blue-20": "#0d98f016",
       "white": "#f5f5f5",
       "white-20": "#f5f5f5cc",
+    },
+    screens: {
+      'xs': '450px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
     }
   },
   plugins: [],

@@ -1,13 +1,18 @@
 import Link from 'next/link'
 import { navData } from '@/lib/nav'
-import { fontTitle, fontAlternative } from '@/lib/fonts'
+import {  fontAlternative } from '@/lib/fonts'
 
+/**
+ * Nav component
+ * @returns {jsx}
+ */
 export default function Nav() {
   return (
     <nav
       className={`
         ${fontAlternative.className}
         font-bold
+        my-4 lg:my-0
       `}
     >
       <ul

@@ -1,10 +1,10 @@
 /**
- * Description
+ * Button component
  * @param {str} text button text. Default ""
  * @param {str} icon svg path. Default ""
  * @param {str} type button type. Default "button"
  * @param {bool} phamtom button without background. Default true
- * @returns {any}
+ * @returns {jsx}
  */
 export default function Button({text = "", icon="", type = "button", phamtom = true}) {
 

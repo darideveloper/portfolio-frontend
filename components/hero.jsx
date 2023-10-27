@@ -54,6 +54,8 @@ export default function Hero({ tools }) {
     <div
       className={`
         hero
+        container
+        mx-auto
         w-full
         flex
         flex-col
@@ -89,6 +91,7 @@ export default function Hero({ tools }) {
           logo-wrapper
           w-72 xs:w-96
           relative
+          rounded-full
         `}
         onMouseEnter={() => setLogoHover(true)}
         onMouseLeave={() => setLogoHover(false)}
@@ -173,6 +176,7 @@ export default function Hero({ tools }) {
           bottom-0
           right-0
           hidden md:inline-block
+          opacity-50
         `}
         id="code-js"
         reverse={true}

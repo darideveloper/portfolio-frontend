@@ -26,12 +26,10 @@ export default function CodeBlock({ code, className, id, reverse=false}) {
         text-blue
         text-sm
         font-bold
-        opacity-40
         ${fontAlternative.className}
         -z-10
-        overflow-y-scroll
+        overflow-y-hidden
         h-72
-        scroll-smooth
         no-scrollbar
       `}
       id={id}

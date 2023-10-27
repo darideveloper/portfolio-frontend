@@ -23,7 +23,7 @@ export default function Home ({contacts, projects}) {
     // Move all tools to main list without duplicates
     tools = []
     toolsCopy.forEach (tool => tool.forEach (t => {
-      if (!mainTools.find (mt => mt.name === t.name))
+      if (!tools.find (mt => mt.name === t.name))
       tools.push (t)
     }))
   

@@ -1,9 +1,14 @@
 import { fontAlternative } from '@/lib/fonts'
 import { useEffect } from 'react'
 
+/**
+ * Code block with scroll animation for decoration
+ * @param {string} code text to show
+ * @param {string} className
+ * @param {string} id
+ * @param {bool} reverse reverse scroll. Default false
+ */
 export default function CodeBlock({ code, className, id, reverse=false}) {
-
-  console.log ({ code, className, id, reverse })
 
   useEffect(() => {
     // Auto scroll animation

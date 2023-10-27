@@ -5,6 +5,8 @@ import { useEffect } from 'react'
  * @param {children} children
  * @param {string} className
  * @param {string} id 
+ * @param {func} onMouseEnter
+ * @param {func} onMouseLeave
  * @returns 
  */
 export default function Wrapper3D({ children, className, id, onMouseEnter, onMouseLeave }) {

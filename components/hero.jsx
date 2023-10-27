@@ -79,6 +79,10 @@ export default function Hero({ tools }) {
           duration-500
           text-center
           ${logoHover ? "pb-20 xs:pb-24" : "pb-4"}
+          flex
+          flex-col
+          items-center
+          justify-center
         `}
         data-text="Dari Developer"
       >
@@ -86,7 +90,7 @@ export default function Hero({ tools }) {
           className={`
             main-text
             glitch
-            block
+            inlie-block
             ${logoHover ? "glitch-anim" : ""}
           `}
         >
@@ -98,16 +102,21 @@ export default function Hero({ tools }) {
             font-normal
             ${fontTitle.className}
             text-lg xs:text-xl sm:text-2xl
-            block
+            inline-block
             border-b-2
             ${logoHover ? "border-blue" : "border-transparent"}
             duration-500
-            
+            my-2        
           `}
         >
           Full Stack & Web Scraping
         </span>
       </h1>
+
+      {/* cta */}
+      <div className="cta">
+        
+      </div>
 
       <Wrapper3D
         id="logo-wrapper"

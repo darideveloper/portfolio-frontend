@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 749 102" width="749" height="102">
+	<title>image</title>
+	<style>
+		.s0 { fill: none;stroke: #0d9cf6;stroke-miterlimit:100;stroke-width: 2 } 
+		.s1 { fill: none;stroke: #0d9cf6;stroke-miterlimit:100;stroke-width: 3 } 
+	</style>
+	<path id="Shape 1" class="s0" d="m13 20l168-1 41 41 70-2 24 24 62-1 25-23"/>
+	<path id="Shape 2" class="s1" d="m732 91l-143 1-41-34h-145"/>
+</svg>

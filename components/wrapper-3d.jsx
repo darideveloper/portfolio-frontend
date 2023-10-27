@@ -7,7 +7,7 @@ import { useEffect } from 'react'
  * @param {string} id 
  * @returns 
  */
-export default function Wrapper3D({ children, className, id }) {
+export default function Wrapper3D({ children, className, id, onMouseEnter, onMouseLeave }) {
 
   useEffect(() => {
 
@@ -49,6 +49,8 @@ export default function Wrapper3D({ children, className, id }) {
         perspective
         ${className}
       `}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       {children}
     </div>

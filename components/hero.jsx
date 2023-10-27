@@ -59,6 +59,8 @@ export default function Hero({ tools }) {
         items-center
         justify-center
         pb-20
+        relative
+        ovwerflow-y-hidden
       `}
     >
 
@@ -70,10 +72,10 @@ export default function Hero({ tools }) {
           font-bold
           uppercase
           pt-10
-          ${logoHover ? "pb-16 xs:pb-20": "pb-4"}
+          ${logoHover ? "pb-16 xs:pb-20" : "pb-4"}
           duration-500
           glitch
-          ${logoHover ? "glitch-anim": ""}
+          ${logoHover ? "glitch-anim" : ""}
         `}
         data-text="Dari Developer"
       >
@@ -155,35 +157,162 @@ export default function Hero({ tools }) {
 
       <CodeBlock
         code={`
-          @app.post ('/webhook/')
-          def message ():
+        @app.get ('/webhook/')
+        def webhook_subscribe ():
+            """ Webhook for whatsapp """
+            
+            # Get url&get variables
+            hub_mode = request.args.get ('hub.mode', '')
+            hub_challenge = request.args.get ('hub.challenge', '')
+            hub_verify_token = request.args.get ('hub.verify_token', '')
+            
+            if hub_mode == "subscribe": 
+            
+                # Validate token
+                if hub_verify_token not in META_TOKENS:
+                    return ({
+                        "status": "error",
+                        "message": "invalid token",
+                        "data": []
+                    }, 401)
+                
+                return hub_challenge
+            
+            return ({
+                "status": "error",
+                "message": "invalid request",
+                "data": []
+            }, 400)
 
-          # Get all post data
-          data = request.get_json ()
-
-          # Detect if is msg or wp message
-          source = "wp"
-          entry = data["entry"][0]
-          if entry.get ("messaging", ""):
-            source = "msg"
-
-          # Default error
-          error_response = (
-            "status": "error",
-            "message": "invalid request",
-            "data": []
-          . 200)
-
-          if source == "wp":
+        @app.post ('/webhook/')
+        def message ():
+            
+            # Get all post data
+            data = request.get_json ()
+            
+            # Detect if is msg or wp message
+            source = "wp"
+            entry = data["entry"][0]
+            if entry.get ("messaging", ""):
+                source = "msg"
+                
+            
+            # Default error
+            error_response = ({
+                "status": "error",
+                "message": "invalid request",
+                "data": []
+            }, 200)
+            
+            if source == "wp":
+                
+                # Get message data
+                try:
+                    message_data = entry["changes"][0]["value"]["messages"][0]
+                    message_phone = message_data["from"]
+                    message_text = message_data["text"]["body"]
+                except Exception as e:
+                    return error_response
+                    
+                # Fix phone number format
+                if message_phone.startswith ("521"):
+                    message_phone = message_phone.replace ("521", "52")
+                
+                # Send message
+                workflow_thread = Thread (target=workflow)
+                workflow_thread.start ()
+                
+            elif source == "msg":
+                
+                # Get message data
+                try:
+                    message_data = entry["messaging"][0]
+                    message_sender = message_data["sender"]["id"]
+                    message_text = message_data["message"]["text"]
+                except Exception as e:
+                    return error_response
+                    
+                # Send message
+                workflow_thread = Thread (target=workflow)
+                workflow_thread.start ()        
+            
+            # Confirm message
+            return ("EVENT_RECEIVED", 200)
         `}
         className={`
-          code
-          w-8/12
-          mx-auto
-          mt-10
-          ${fontAlternative.className}
-          hidden
+          top-0
+          left-0
+          opacity-10 md:opacity-40
         `}
+        id="code-py"
+      />
+
+      <CodeBlock
+        code={`
+          // Elements
+          const form = document.querySelector("#search-form")
+          const inputSearch = document.querySelector("#input-search")
+          const loading = document.querySelector(".loading")
+          const iframe = document.querySelector("iframe")
+          const footer = document.querySelector("footer")
+
+          // Api data
+          var headers = new Headers()
+          headers.append("Content-Type", "application/json")
+
+          // Control variables
+          let isLoading = false
+          let requestId = 0
+
+          function alertError(error) {
+            // Debug error
+            console.log({ error })
+
+            // Show alert
+            Swal.fire({
+              title: 'Service error!',
+              text: 'The service is not available...'
+            })
+          }
+
+          async function apiSendkeyword(keyword) {
+
+            // Query data
+            var raw = JSON.stringify({
+              "keyword": keyword,
+              "api-key": apiKey
+            })
+
+            try {
+
+              // Send data to api
+              const response = await fetch("./keyword/", {
+                method: 'POST',
+                headers: headers,
+                body: raw,
+                redirect: 'follow'
+              })
+
+              // Get json from api
+              const result = await response.json()
+
+              // Get request id
+              requestId = result.data["request-id"]
+              console.log({ requestId })
+
+            } catch (error) {
+              alertError(error)
+            }
+          }  
+        `}
+        className={`
+          bottom-0
+          right-0
+          hidden md:inline-block
+        `}
+        id="code-js"
+        reverse={true}
+
       />
 
     </div>

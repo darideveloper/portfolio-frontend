@@ -56,3 +56,20 @@ body
 
     100%
         text-shadow: -0.025em 0 0 $blue, -0.025em -0.025em 0 $blue-20, -0.025em -0.05em 0 $blue-40
+
+.no-scrollbar::-webkit-scrollbar
+    display: none
+
+// Animation to scroll up and down
+.autoscroll
+    animation: autoscroll 30s linear infinite
+
+    &.reverse
+        animation-direction: reverse
+
+@keyframes autoscroll
+    0%
+        transform: translateY(0)
+
+    100%
+        transform: translateY(-70%)

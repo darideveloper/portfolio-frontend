@@ -142,11 +142,11 @@ export default function Hero({ tools }) {
                   w-12
                   h-12
                 `}
+                key={index}
               >
                 <img
                   src={tool.image}
                   alt={tool.name}
-                  key={index}
                   className={`
                     w-8 xs:w-12
                     duration-500

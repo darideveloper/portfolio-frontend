@@ -25,6 +25,13 @@ body
 .perspective-wrapper
     perspective: 800px
 
+.line-decorator
+    
+    animation: blur 5s infinite alternate
+
+    .mirror
+        transform: scaleX(-1)
+
 .glitch
     position: relative
 
@@ -62,7 +69,7 @@ body
 
 // Animation to scroll up and down
 .autoscroll
-    animation: autoscroll 30s linear infinite
+    animation: autoscroll 20s infinite alternate
 
     &.reverse
         animation-direction: reverse
@@ -73,3 +80,12 @@ body
 
     100%
         transform: translateY(-70%)
+
+@keyframes blur
+    0%
+        filter: blur(0px)
+        opacity: 15%
+
+    100%
+        filter: blur(4px)
+        opacity: 5%

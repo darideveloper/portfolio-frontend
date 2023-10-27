@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import Wrapper3D from '@/components/wrapper-3d'
-import { useEffect, useState } from 'react'
 import CodeBlock from '@/components/code-block'
+import LineDecorator from './line-decorator'
+import { useEffect, useState } from 'react'
 import { fontAlternative } from '@/lib/fonts'
-import { codeJs, codePy, codejs } from '@/lib/code-blocks'
+import { codePy, codeJs } from '@/lib/code-blocks'
 
 /**
  * Hero section
@@ -160,6 +161,8 @@ export default function Hero({ tools }) {
 
       </Wrapper3D>
 
+      {/* Background decorators */}
+
       <CodeBlock
         code={codePy}
         className={`
@@ -171,7 +174,7 @@ export default function Hero({ tools }) {
       />
 
       <CodeBlock
-        code={codejs}
+        code={codeJs}
         className={`
           bottom-0
           right-0
@@ -180,7 +183,19 @@ export default function Hero({ tools }) {
         `}
         id="code-js"
         reverse={true}
+      />
 
+      <LineDecorator
+        className={`
+          top-0
+        `}
+      />
+
+      <LineDecorator
+        mirror={true}
+        className={`
+          bottom-0
+        `}
       />
 
     </div>

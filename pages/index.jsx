@@ -1,6 +1,7 @@
 import { getContacts, getProjects } from "@/lib/portfolio"
 import RootLayout from "@/layouts/root-layout"
 import Hero from "@/components/hero"
+import { useEffect, useState } from "react"
 
 /**
  * Description
@@ -9,24 +10,33 @@ import Hero from "@/components/hero"
  */
 export default function Home ({contacts, projects}) {
 
-  // Get tools from projects
-  let tools = projects.map (project => project.tools)
+  const [mainTools, setMainTools] = useState ([])
 
-  // Remove projects ids (keep only name and image)
-  tools = tools.map (tool => tool.map (t => ({name: t.name, image: t.image})))
+  useEffect (() => {
+    // Get tools from projects
+    let tools = projects.map (project => project.tools)
   
-  // Move all tools to main list without duplicates
-  let mainTools = []
-  tools.forEach (tool => tool.forEach (t => {
-    if (!mainTools.find (mt => mt.name === t.name))
-      mainTools.push (t)
-  }))
+    // Remove projects ids (keep only name and image)
+    tools = tools.map (tool => tool.map (t => ({name: t.name, image: t.image})))
+    const toolsCopy = [...tools]
+    
+    // Move all tools to main list without duplicates
+    tools = []
+    toolsCopy.forEach (tool => tool.forEach (t => {
+      if (!mainTools.find (mt => mt.name === t.name))
+      tools.push (t)
+    }))
+  
+    // If there are more than 12 tools, select 12 random
+    if (tools.length > 12) {
+      tools = tools.sort (() => Math.random() - 0.5)
+      tools = tools.slice (0, 12)
+    }
 
-  // If there are more than 12 tools, select 12 random
-  if (mainTools.length > 12) {
-    mainTools = mainTools.sort (() => Math.random() - 0.5)
-    mainTools = mainTools.slice (0, 12)
-  }
+    setMainTools (tools)
+
+  }, [projects])
+
 
   return (
     <RootLayout 

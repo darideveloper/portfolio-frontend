@@ -13,6 +13,7 @@ module.exports = {
       "blue-40": "#0d98f040",
       "white": "#f5f5f5",
       "white-20": "#f5f5f5cc",
+      "transparent": "transparent",
     },
     screens: {
       'xs': '450px',

@@ -3,7 +3,7 @@ import Wrapper3D from '@/components/wrapper-3d'
 import CodeBlock from '@/components/code-block'
 import LineDecorator from './line-decorator'
 import { useEffect, useState } from 'react'
-import { fontAlternative } from '@/lib/fonts'
+import { fontAlternative, fontTitle } from '@/lib/fonts'
 import { codePy, codeJs } from '@/lib/code-blocks'
 
 /**
@@ -76,14 +76,37 @@ export default function Hero({ tools }) {
           font-bold
           uppercase
           pt-10
-          ${logoHover ? "pb-16 xs:pb-20" : "pb-4"}
           duration-500
-          glitch
-          ${logoHover ? "glitch-anim" : ""}
+          text-center
+          ${logoHover ? "pb-20 xs:pb-24" : "pb-4"}
         `}
         data-text="Dari Developer"
       >
-        Dari Developer
+        <span 
+          className={`
+            main-text
+            glitch
+            block
+            ${logoHover ? "glitch-anim" : ""}
+          `}
+        >
+          Dari Developer
+        </span>
+        <span 
+          className={`
+            secondary-text
+            font-normal
+            ${fontTitle.className}
+            text-lg xs:text-xl sm:text-2xl
+            block
+            border-b-2
+            ${logoHover ? "border-blue" : "border-transparent"}
+            duration-500
+            
+          `}
+        >
+          Full Stack & Web Scraping
+        </span>
       </h1>
 
       <Wrapper3D

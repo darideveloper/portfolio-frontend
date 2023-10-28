@@ -1,7 +1,8 @@
 import { getContacts, getProjects } from "@/lib/portfolio"
+import { useEffect, useState } from "react"
 import RootLayout from "@/layouts/root-layout"
 import Hero from "@/components/hero"
-import { useEffect, useState } from "react"
+import LastProjects from "@/components/last-projects"
 
 /**
  * Description
@@ -46,6 +47,7 @@ export default function Home ({contacts, projects}) {
     >
       
       <Hero tools={mainTools} />
+      <LastProjects projects={projects} />
 
     </RootLayout>
   )

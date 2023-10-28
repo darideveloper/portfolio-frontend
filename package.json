@@ -12,7 +12,8 @@
     "@prismicio/react": "^2.7.3",
     "next": "latest",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "swiper": "^11.0.3"
   },
   "engines": {
     "node": ">=18"

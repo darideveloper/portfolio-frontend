@@ -13,6 +13,7 @@ export default function LineDecorator({className, mirror=false}) {
       src="/imgs/line.svg"
       width={1000}
       height={100}
+      alt='Line decoration'
       className={`
         line-decorator
         w-full

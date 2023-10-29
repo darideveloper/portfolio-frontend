@@ -1,4 +1,3 @@
-
 import ContactIcon from '@/components/contact-icon'
 import Nav from '@/components/nav'
 import Search from '@/components/search'

@@ -15,6 +15,8 @@ import 'swiper/css'
  */
 export default function Slider({ slides }) {
 
+  console.log ({slides})
+
   const [slidesPerView, setSlidesPerView] = useState(1)
 
   /**
@@ -76,7 +78,7 @@ export default function Slider({ slides }) {
               `}
             >
               <Link
-                href={`/projects/${slide.id}`}
+                href={slide.id != -1 ? `/projects/${slide.id}` : `/projects/`}
                 className={`
                   absolute
                   z-10

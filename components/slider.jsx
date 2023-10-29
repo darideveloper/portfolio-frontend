@@ -1,6 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useEffect, useState } from 'react'
 import { fontTitle } from '@/lib/fonts'
+import { MDXRemote } from 'next-mdx-remote'
+
 import Link from 'next/link'
 
 import 'swiper/css'
@@ -15,16 +17,35 @@ export default function Slider({ slides }) {
 
   const [slidesPerView, setSlidesPerView] = useState(1)
 
+  /**
+   * Change number of slides per view in swipper depending on screen width
+   */
   function updateSlidesPerView() {
     if (window.innerWidth < 608) setSlidesPerView(1)
     else if (window.innerWidth < 768) setSlidesPerView(2)
-    else setSlidesPerView(3)
+    else if (window.innerWidth < 1024) setSlidesPerView(3)
+    else setSlidesPerView(4)
+  }
+
+  /**
+   * Short long links to a max of 20 characters
+   */
+  function shortLinks() {
+    const links = document.querySelectorAll('.slider-details a')
+    links.forEach(link => {
+      if (link.innerText.length > 20) {
+        link.innerText = link.innerText.slice(0, 20) + '...'
+      }
+    })
   }
 
   useEffect(() => {
 
+    // Short links when load
+    shortLinks()
+
     // Set slides per view when loads and on resize
-    updateSlidesPerView ()
+    updateSlidesPerView()
     window.addEventListener('resize', updateSlidesPerView)
   }, [])
 
@@ -37,7 +58,7 @@ export default function Slider({ slides }) {
     >
       {
         slides.map((slide) => (
-          <SwiperSlide 
+          <SwiperSlide
             className={`
               text-center
               cursor-pointer
@@ -54,7 +75,7 @@ export default function Slider({ slides }) {
                 pb-28
               `}
             >
-              <Link 
+              <Link
                 href={`/projects/${slide.id}`}
                 className={`
                   absolute
@@ -73,18 +94,30 @@ export default function Slider({ slides }) {
                 `}
               />
 
-              <img
-                src={slide.image || "/imgs/logo.png"}
-                alt={slide.title}
+              <div
                 className={`
-                  w-6/12 sm:w-8/12 xl:w-6/12
+                  logo-wrapper
+                  w-36 sm:w-42 
+                  h-36 sm:h-42 
+                  flex
+                  items-center
+                  justify-center
                   mx-auto
-                  duration-500
-                  group-hover:opacity-30
                 `}
-              />
+              >
+                <img
+                  src={slide.image || "/imgs/logo.png"}
+                  alt={slide.title}
+                  className={`
+                    w-full
+                    duration-500
+                    group-hover:opacity-30
+                  `}
+                />
+              </div>
 
-              <div 
+
+              <div
                 className={`
                   texts
                   absolute
@@ -92,6 +125,10 @@ export default function Slider({ slides }) {
                   left-0
                   w-full
                   mb-5
+                  flex  
+                  flex-col
+                  items-center
+                  justify-center
                 `}
               >
                 <h3
@@ -103,11 +140,20 @@ export default function Slider({ slides }) {
                 >
                   {slide.title}
                 </h3>
-                <p
-                  className={``}
+                <div
+                  className={`
+                    slider-details
+                    h-0
+                    overflow-hidden
+                    duration-500
+                    group-hover:h-24
+                    w-11/12
+                  `}
                 >
-                  {slide.details}
-                </p>
+                  <MDXRemote
+                    {...slide.details}
+                  />
+                </div>
               </div>
             </article>
           </SwiperSlide>

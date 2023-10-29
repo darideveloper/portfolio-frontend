@@ -59,6 +59,8 @@ export async function getStaticProps() {
   const contacts = await getContacts()
   const projects = await getProjects()
 
+  console.log ({projects})
+
   return {
     props: {
       contacts, projects

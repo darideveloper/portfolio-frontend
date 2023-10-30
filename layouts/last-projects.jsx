@@ -13,6 +13,9 @@ import Button from '@/components/button'
  */
 export default function LastProjects({ projects }) {
 
+  // Filter done projects
+  projects = projects.filter(project => project.is_done === true)
+
   const [slides, setSlides] = useState([])
   const swiperRef = useRef(null)
   const [sliderPrevActive, setSliderPrevActive] = useState(false)

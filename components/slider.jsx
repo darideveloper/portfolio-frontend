@@ -11,11 +11,10 @@ import 'swiper/css'
 /**
  * Description
  * @param {array} slides objects with id, image, title and details
+ * @param {function} setSwiperInstance save as state the swiper instance
  * @returns {any}
  */
-export default function Slider({ slides }) {
-
-  console.log ({slides})
+export default function Slider({ slides, swiperRef }) {
 
   const [slidesPerView, setSlidesPerView] = useState(1)
 
@@ -56,8 +55,13 @@ export default function Slider({ slides }) {
     <Swiper
       spaceBetween={50}
       slidesPerView={slidesPerView}
-      onSlideChange={() => console.log('slide change')}
+      className={`
+        w-11/12
+        mx-auto
+      `}
+      onSwiper={(swiper) => (swiperRef.current = swiper)}
     >
+
       {
         slides.map((slide) => (
           <SwiperSlide

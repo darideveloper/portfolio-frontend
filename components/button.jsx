@@ -4,13 +4,15 @@
  * @param {str} icon svg path. Default ""
  * @param {str} type button type. Default "button"
  * @param {bool} phamtom button without background. Default true
+ * @param {str} className button class. Default ""
  * @returns {jsx}
  */
-export default function Button({text = "", icon="", type = "button", phamtom = true}) {
+export default function Button({text = "", icon="", type = "button", phamtom = true, className = "", onClick}) {
 
   return (
     <button
       type={type}
+      onClick={onClick}
     >
 
       {/* Icon */}
@@ -21,9 +23,14 @@ export default function Button({text = "", icon="", type = "button", phamtom = t
           w-12
           p-3
           rounded-md
+          duration-200
+          hover:opacity-60
+          ${className}
         `}
       >
-        <path d={icon} />
+        <path 
+          d={icon} 
+        />
       </svg>
 
     </button>

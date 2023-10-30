@@ -56,7 +56,7 @@ export default function Slider({ slides, swiperRef, handleSlideChange }) {
       spaceBetween={50}
       slidesPerView={slidesPerView}
       className={`
-        w-11/12
+        w-11/12 xl:w-full
         mx-auto
       `}
       onSwiper={(swiper) => (swiperRef.current = swiper)}
@@ -79,7 +79,7 @@ export default function Slider({ slides, swiperRef, handleSlideChange }) {
                 p-4
                 w-full
                 h-full
-                pb-28
+                pb-20 md:pb-28
               `}
             >
               <Link

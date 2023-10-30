@@ -7,12 +7,13 @@
  * @param {str} className button class. Default ""
  * @returns {jsx}
  */
-export default function Button({text = "", icon="", type = "button", phamtom = true, className = "", onClick}) {
+export default function Button({text = "", icon="", type = "button", phamtom = true, className = "", onClick, disabled}) {
 
   return (
     <button
       type={type}
       onClick={onClick}
+      disabled={disabled}
     >
 
       {/* Icon */}
@@ -24,7 +25,7 @@ export default function Button({text = "", icon="", type = "button", phamtom = t
           p-3
           rounded-md
           duration-200
-          hover:opacity-60
+          ${disabled ? 'opacity-10' : 'hover:opacity-60'}
           ${className}
         `}
       >

@@ -14,7 +14,7 @@ import 'swiper/css'
  * @param {function} setSwiperInstance save as state the swiper instance
  * @returns {any}
  */
-export default function Slider({ slides, swiperRef }) {
+export default function Slider({ slides, swiperRef, handleSlideChange }) {
 
   const [slidesPerView, setSlidesPerView] = useState(1)
 
@@ -60,6 +60,7 @@ export default function Slider({ slides, swiperRef }) {
         mx-auto
       `}
       onSwiper={(swiper) => (swiperRef.current = swiper)}
+      onSlideChange={handleSlideChange}
     >
 
       {

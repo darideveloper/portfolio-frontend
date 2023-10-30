@@ -14,13 +14,14 @@ import Button from '@/components/button'
 export default function LastProjects({ projects }) {
 
   const [slides, setSlides] = useState([])
-  const swiperRef = useRef(null);
+  const swiperRef = useRef(null)
+  const [sliderPrevActive, setSliderPrevActive] = useState(false)
+  const [sliderNextActive, setSliderNextActive] = useState(true)
 
   /**
    * Move to next swiper slide
    */
   function sliderGoNext() {
-    console.log (swiperRef)
     if (swiperRef.current) {
       swiperRef.current.slideNext()
     }
@@ -30,9 +31,24 @@ export default function LastProjects({ projects }) {
    * Move to previous swiper slide
    */
   function sliderGoPrev() {
-    console.log (swiperRef)
     if (swiperRef.current) {
       swiperRef.current.slidePrev()
+    }
+  }
+
+  function handleSlideChange(swiper) {
+    // Disable prev button
+    if (swiper.isBeginning) {
+      setSliderPrevActive (false)
+    } else {
+      setSliderPrevActive (true)
+    }
+
+    // Disable next button
+    if (swiper.isEnd) {
+      setSliderNextActive (false)
+    } else {
+      setSliderNextActive (true)
     }
   }
 
@@ -80,6 +96,7 @@ export default function LastProjects({ projects }) {
             rotate-180
           `}
           onClick={sliderGoPrev}
+          disabled={!sliderPrevActive}
         />
 
         <h2
@@ -101,13 +118,15 @@ export default function LastProjects({ projects }) {
             mb-10
             w-20
           `}
-          onClick={() => sliderGoNext()}
+          onClick={sliderGoNext}
+          disabled={!sliderNextActive}
         />
       </div>
 
       <Slider
         slides={slides}
         swiperRef={swiperRef}
+        handleSlideChange={handleSlideChange}
       />
     </div>
   )

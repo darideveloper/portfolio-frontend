@@ -58,6 +58,8 @@ export default function Slider({ slides, swiperRef, handleSlideChange }) {
       className={`
         w-11/12 xl:w-full
         mx-auto
+        duration-500
+        hover:-skew-x-2
       `}
       onSwiper={(swiper) => (swiperRef.current = swiper)}
       onSlideChange={handleSlideChange}
@@ -76,10 +78,19 @@ export default function Slider({ slides, swiperRef, handleSlideChange }) {
             <article
               className={`
                 relative
-                p-4
+                px-2
+                pt-6
                 w-full
                 h-full
                 pb-20 md:pb-28
+                border-2
+                border-blue-40 group-hover:border-transparent
+                rounded-xl
+                flex
+                flex-col
+                items-center
+                justify-center
+                duration-300
               `}
             >
               <Link
@@ -104,12 +115,16 @@ export default function Slider({ slides, swiperRef, handleSlideChange }) {
               <div
                 className={`
                   logo-wrapper
-                  w-36 sm:w-42 
-                  h-36 sm:h-42 
+                  w-40 sm:w-44 
+                  h-40 sm:h-44 
                   flex
                   items-center
                   justify-center
                   mx-auto
+                  p-4
+                  rounded-full
+                  bg-blue-20
+                  group-hover:blur-sm
                 `}
               >
                 <img
@@ -129,13 +144,15 @@ export default function Slider({ slides, swiperRef, handleSlideChange }) {
                   texts
                   absolute
                   bottom-0
-                  left-0
-                  w-full
+                  left-1/2
+                  -translate-x-1/2
+                  w-10/12
                   mb-5
                   flex  
                   flex-col
                   items-center
                   justify-center
+                  mx-auto
                 `}
               >
                 <h3

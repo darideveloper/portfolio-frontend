@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Wrapper3D from '@/components/wrapper-3d'
 import CodeBlock from '@/components/code-block'
-import LineDecorator from './line-decorator'
+import LineDecorator from '../components/line-decorator'
 import { useEffect, useState } from 'react'
 import { fontAlternative, fontTitle } from '@/lib/fonts'
 import { codePy, codeJs } from '@/lib/code-blocks'

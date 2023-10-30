@@ -1,8 +1,8 @@
 import { getContacts, getProjects } from "@/lib/portfolio"
 import { useEffect, useState } from "react"
 import RootLayout from "@/layouts/root-layout"
-import Hero from "@/components/hero"
-import LastProjects from "@/components/last-projects"
+import Hero from "@/layouts/hero"
+import LastProjects from "@/layouts/last-projects"
 
 /**
  * Description

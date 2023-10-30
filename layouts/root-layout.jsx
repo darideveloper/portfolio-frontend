@@ -1,6 +1,6 @@
 import { metadata } from "@/lib/metadata"
 import Head from "next/head"
-import Header from "@/components/header"
+import Header from "@/layouts/header"
 import { fontRegular } from "@/lib/fonts"
 
 /**
